@@ -1,0 +1,27 @@
+﻿field
+proper
+mount
+vehicle
+airline
+price
+total
+partner
+sleeper
+pay
+hotel
+fridge
+air conditioning
+standard
+single
+condition
+comfortable
+raise
+king
+queen
+common
+Canadian
+dollar
+somebody
+forward
+hear from
+top
