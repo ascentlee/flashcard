@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Flashcards</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="flashcard">
+            <div class="word" id="wordDisplay">Welcome</div>
+             <div id="meaning" class="meaning">欢迎</div>
+        </div>
+        
+        <div class="controls">
+            <div class="unit-controls">
+                <select id="textSelect" class="control-item">
+                    <option value="Unit1">Unit 1</option>
+                    <option value="Unit2">Unit 2</option>
+                </select>
+                
+                <select id="repeatCount" class="control-item">
+                    <option value="1">Repeat 1x</option>
+                    <option value="2">Repeat 2x</option>
+                    <option value="3">Repeat 3x</option>
+                    <option value="4">Repeat 4x</option>
+                    <option value="5">Repeat 5x</option>
+                </select>
+            </div>
+            
+            <div class="settings-row">
+                <div class="interval-control">
+                    <label for="interval">Interval (seconds):</label>
+                    <input type="number" id="interval" min="1" max="10" value="2" class="control-item">
+                </div>
+
+                <div class="auto-read-control">
+                    <label for="autoRead">
+                        <input type="checkbox" id="autoRead" class="control-item" checked>
+                        Auto Read Words
+                    </label>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button id="startBtn" class="control-item">Start</button>
+                <button id="pauseBtn" class="control-item" disabled>Pause</button>
+                <button id="resetBtn" class="control-item">Reset</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
