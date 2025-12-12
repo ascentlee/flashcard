@@ -3,53 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vocabulary Flashcards</title>
+    <title>MP3 Player</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <div class="flashcard">
-            <div class="word" id="wordDisplay">Welcome</div>
-             <div id="meaning" class="meaning">欢迎</div>
-        </div>
-        
-        <div class="controls">
-            <div class="unit-controls">
-                <select id="textSelect" class="control-item">
-                    <option value="Unit1">Unit 1</option>
-                    <option value="Unit2">Unit 2</option>
-                </select>
-                
-                <select id="repeatCount" class="control-item">
-                    <option value="1">Repeat 1x</option>
-                    <option value="2">Repeat 2x</option>
-                    <option value="3">Repeat 3x</option>
-                    <option value="4">Repeat 4x</option>
-                    <option value="5">Repeat 5x</option>
-                </select>
+        <div class="player">
+            <div class="player-header">
+                <h1>MP3 Player</h1>
             </div>
-            
-            <div class="settings-row">
-                <div class="interval-control">
-                    <label for="interval">Interval (seconds):</label>
-                    <input type="number" id="interval" min="1" max="10" value="2" class="control-item">
-                </div>
 
-                <div class="auto-read-control">
-                    <label for="autoRead">
-                        <input type="checkbox" id="autoRead" class="control-item" checked>
-                        Auto Read Words
-                    </label>
+            <div class="album-art">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="90" fill="#e8e8e8" stroke="#999" stroke-width="2"/>
+                    <circle cx="100" cy="100" r="70" fill="#333" opacity="0.1"/>
+                    <circle cx="100" cy="100" r="35" fill="#ff6b6b"/>
+                    <circle cx="100" cy="100" r="20" fill="#fff"/>
+                </svg>
+            </div>
+
+            <div class="track-info">
+                <div class="track-title" id="trackTitle">No song selected</div>
+                <div class="track-artist" id="trackArtist">Add audio files to get started</div>
+            </div>
+
+            <div class="time-display">
+                <span id="currentTime">0:00</span>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                        <input type="range" class="progress-slider" id="progressSlider" min="0" max="100" value="0">
+                    </div>
                 </div>
+                <span id="duration">0:00</span>
             </div>
-            
-            <div class="buttons">
-                <button id="startBtn" class="control-item">Start</button>
-                <button id="pauseBtn" class="control-item" disabled>Pause</button>
-                <button id="resetBtn" class="control-item">Reset</button>
+
+            <div class="controls">
+                <button class="control-btn backward-btn" id="backwardBtn" title="Previous">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                        <line x1="5" y1="18" x2="5" y2="6"></line>
+                    </svg>
+                </button>
+
+                <button class="control-btn play-btn" id="playBtn" title="Play">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </button>
+
+                <button class="control-btn pause-btn" id="pauseBtn" title="Pause" style="display: none;">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                </button>
+
+                <button class="control-btn stop-btn" id="stopBtn" title="Stop">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="5" y="5" width="14" height="14"></rect>
+                    </svg>
+                </button>
+
+                <button class="control-btn forward-btn" id="forwardBtn" title="Next">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                        <line x1="19" y1="6" x2="19" y2="18"></line>
+                    </svg>
+                </button>
             </div>
+
+            <div class="volume-control">
+                <svg class="volume-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.26 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                </svg>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+                <span class="volume-value" id="volumeValue">70%</span>
+            </div>
+
+            <div class="playlist-controls">
+                <button class="primary-btn" id="openBtn" title="Open Audio Files">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                        <polyline points="13 2 13 9 20 9"></polyline>
+                    </svg>
+                    Open Audio Files
+                </button>
+                <button class="secondary-btn" id="resetBtn" title="Reset Player">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2-8.83"></path>
+                    </svg>
+                    Reset
+                </button>
+            </div>
+
+            <div class="playlist-section">
+                <div class="playlist-header">
+                    <h2>Playlist</h2>
+                    <span class="playlist-count" id="playlistCount">0 songs</span>
+                </div>
+                <ul class="playlist" id="playlist">
+                    <li class="empty-state">No songs added yet. Click "Open Audio Files" to add songs.</li>
+                </ul>
+            </div>
+
+            <input type="file" id="audioInput" accept="audio/*" multiple style="display: none;">
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
